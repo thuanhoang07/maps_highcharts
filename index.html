@@ -57,28 +57,46 @@
         </div>
     </figure>
 
+    <!-- Input toggle switch -->
+    <label class="switch">
+        <input type="checkbox" id="the_switch">
+        <span class="slider round"></span>
+    </label>
+
     <script src="https://www.unpkg.com/@eohjsc/era-widget@1.0.14/src/index.js"></script>
     <script>
         const eraWidget = new EraWidget();
         let config = null;
 
         eraWidget.onConfiguration((configuration) => {
-            config = configuration.realtime_configs[1]; // Lấy config thứ hai trong danh sách
+            config = configuration.realtime_configs[1];
             updateOverlay();
         });
 
         eraWidget.onValues((values) => {
             const input = document.getElementById('the_switch');
-            input.checked = values[config.id].value;
+            if (input) {
+                input.checked = values[config.id]?.value;
+            }
             updateOverlay();
         });
 
         function updateOverlay() {
             const overlay = document.getElementById('overlay');
+            const input = document.getElementById('the_switch');
             overlay.innerHTML = `
-                Config Name: ${config.name}<br> <!-- Hiển thị trường name -->
-                Input: ${document.getElementById('the_switch') ? document.getElementById('the_switch').checked : 'N/A'}<br>
-                EraWidget: ${JSON.stringify(eraWidget)}
+                <strong>Config Name:</strong> ${config.name}<br>
+                <strong>Input Element Information:</strong><br>
+                ${input ? `
+                    <strong>outerHTML:</strong> ${input.outerHTML}<br>
+                    <strong>Type:</strong> ${input.type}<br>
+                    <strong>Checked:</strong> ${input.checked}<br>
+                    <strong>ID:</strong> ${input.id}<br>
+                    <strong>Name:</strong> ${input.name || 'N/A'}<br>
+                    <strong>Value:</strong> ${input.value}<br>
+                ` : 'Input element not found'}
+                <br>
+                <strong>EraWidget:</strong> ${JSON.stringify(eraWidget)}
             `;
         }
 
