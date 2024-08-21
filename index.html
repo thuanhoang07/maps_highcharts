@@ -63,7 +63,7 @@
         let config = null;
 
         eraWidget.onConfiguration((configuration) => {
-            config = configuration.realtime_configs[0];
+            config = configuration.realtime_configs[1];
             updateOverlay();
         });
 
@@ -77,7 +77,6 @@
             const overlay = document.getElementById('overlay');
             overlay.innerHTML = `
                 config: ${JSON.stringify(config)}<br>
-                <!-- value:  -->
                 input: ${document.getElementById('name') ? document.getElementById('name').checked : 'N/A'}<br>
                 
             `;
