@@ -64,28 +64,20 @@
 
         eraWidget.onConfiguration((configuration) => {
             config = configuration.realtime_configs[0];
-            updateOverlay();
+            displayConfig();
         });
+
+        function displayConfig() {
+            const overlay = document.getElementById('overlay');
+            overlay.innerHTML = `Config: ${JSON.stringify(config, null, 2)}`;
+        }
 
         eraWidget.onValues((values) => {
             const input = document.getElementById('the_switch');
             input.checked = values[config.id].value;
-            updateOverlay();
         });
-
-        function updateOverlay() {
-            const overlay = document.getElementById('overlay');
-            overlay.innerHTML = `
-                config: ${JSON.stringify(config)}<br>
-                
-            `;
-        }
 
         eraWidget.ready();
     </script>
 </body>
 </html>
-
-<!-- 
-input: ${document.getElementById('the_switch') ? document.getElementById('the_switch').checked : 'N/A'}<br>
-                eraWidget: ${eraWidget} -->
