@@ -77,7 +77,8 @@
             const overlay = document.getElementById('overlay');
             overlay.innerHTML = `
                 config: ${JSON.stringify(config)}<br>
-                input: ${document.getElementById('the_switch') ? document.getElementById('the_switch').checked : 'N/A'}<br>
+                <!-- value:  -->
+                input: ${document.getElementById('name') ? document.getElementById('the_switch').checked : 'N/A'}<br>
                 eraWidget: ${eraWidget}
             `;
         }
