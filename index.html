@@ -63,7 +63,7 @@
         let config = null;
 
         eraWidget.onConfiguration((configuration) => {
-            config = configuration.realtime_configs[1];
+            config = configuration.realtime_configs[1]; // Lấy config thứ hai trong danh sách
             updateOverlay();
         });
 
@@ -76,9 +76,9 @@
         function updateOverlay() {
             const overlay = document.getElementById('overlay');
             overlay.innerHTML = `
-                config: ${JSON.stringify(config)}<br>
-                input: ${document.getElementById('name') ? document.getElementById('name').checked : 'N/A'}<br>
-                eraWidget: ${eraWidget}
+                Config Name: ${config.name}<br> <!-- Hiển thị trường name -->
+                Input: ${document.getElementById('the_switch') ? document.getElementById('the_switch').checked : 'N/A'}<br>
+                EraWidget: ${JSON.stringify(eraWidget)}
             `;
         }
 
