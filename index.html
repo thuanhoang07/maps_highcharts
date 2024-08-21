@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Maps and Highcharts Example</title>
+    <style>
+        .highcharts-figure {
+            min-width: 310px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .highcharts-description {
+            margin: 1em 0;
+        }
+
+        #container {
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+
+    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d15674.470667923302!2d106.7122688!3d10.840543!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1722229117174!5m2!1sen!2s" width="800" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+    <figure class="highcharts-figure">
+        <div id="container"></div>
+        <div class="highcharts-description">
+            This demo uses a <code>mappoint</code> series with mapmarker symbols.
+        </div>
+    </figure>
+
+    
+    <script src="https://www.unpkg.com/@eohjsc/era-widget@1.0.14/src/index.js"></script>
+    <script>
+        const eraWidget = new EraWidget();
+        let config = null;
+        eraWidget.onConfiguration((configuration) => {
+            config = configuration.realtime_configs[0];
+        })
+        eraWidget.onValues((values) => {
+            const input = document.getElementById('the_switch');
+            input.checked = values[config.id].value;
+        });
+        eraWidget.ready();
+    </script>
+</body>
+</html>
